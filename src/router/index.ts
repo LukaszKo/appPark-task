@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuth } from '../composables/useAuth'
-import LoginView from '../views/LoginView.vue'
-import GateView from '../views/GateView.vue'
+import { useAuth } from '@/composables/useAuth'
+import LoginView from '@/views/LoginView.vue'
+import GateView from '@/views/GateView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

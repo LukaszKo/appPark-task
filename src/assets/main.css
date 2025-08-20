@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+@import '@/assets/fonts.css';
+
+@theme {
+  --color-primary: #15215c;
+  --color-secondary: #fadf99;
+  --color-tertiary: #ffb034;
+}
