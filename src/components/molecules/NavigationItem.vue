@@ -4,7 +4,6 @@
       'flex flex-col items-center justify-center p-4 transition-colors hover:text-primary',
       isActive ? 'text-primary' : 'text-gray-400',
     ]"
-    @click="$emit('click')"
   >
     <component :is="iconComponent" :class="sizeClass" />
     <span v-if="label" class="text-xs mt-1">{{ label }}</span>
@@ -47,8 +46,4 @@ const sizeClass = computed(() => {
       return 'w-6 h-6'
   }
 })
-
-defineEmits<{
-  click: []
-}>()
 </script>

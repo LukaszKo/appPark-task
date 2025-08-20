@@ -1,7 +1,7 @@
 <template>
   <div class="relative text-white p-4 pb-8 h-52 bg-gradient-to-b from-tertiary to-secondary">
     <div class="flex justify-between items-center text-sm font-medium mb-4 text-black">
-      <span>9:41</span>
+      <span>{{ currentTime }}</span>
       <div class="flex items-center space-x-1">
         <Wifi class="w-4 h-4" />
         <BatteryFull class="w-4 h-4" />
@@ -25,12 +25,31 @@
 </template>
 
 <script setup lang="ts">
+import { onUnmounted, ref } from 'vue'
 import { Wifi, BatteryFull, CircleArrowLeft } from 'lucide-vue-next'
 import BaseText from '@/components/atoms/BaseText.vue'
 
 interface Props {
   title: string
 }
+
+const currentTime = ref(getCurrentTime())
+
+const timeInterval = setInterval(() => {
+  currentTime.value = getCurrentTime()
+}, 1000)
+
+function getCurrentTime() {
+  return Intl.DateTimeFormat(navigator.language, {
+    hour: 'numeric',
+    minute: 'numeric',
+    hourCycle: 'h23',
+  }).format()
+}
+
+onUnmounted(() => {
+  clearInterval(timeInterval)
+})
 
 defineProps<Props>()
 defineEmits<{

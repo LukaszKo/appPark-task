@@ -9,16 +9,16 @@
           class="w-16 h-48 border-2 border-blue-900 rounded-tl-none border-l-0 rounded-tr-4xl rounded-br-4xl mt-16 grid"
         >
           <div class="border-b-2 border-blue-900 flex justify-center items-center">
-            <span class="text-2xl">A</span>
+            <BaseText variant="heading-lg" tag="span" class="font-normal">A</BaseText>
           </div>
           <div class="border-b-2 border-blue-900 flex justify-center items-center">
-            <span class="text-2xl">B</span>
+            <BaseText variant="heading-lg" tag="span" class="font-normal">B</BaseText>
           </div>
           <div class="border-b-2 border-blue-900 flex justify-center items-center">
-            <span class="text-2xl">C</span>
+            <BaseText variant="heading-lg" tag="span" class="font-normal">C</BaseText>
           </div>
           <div class="bg-tertiary rounded-br-4xl flex justify-center items-center">
-            <span class="text-2xl">D</span>
+            <BaseText variant="heading-lg" tag="span" class="font-normal">D</BaseText>
           </div>
         </div>
       </div>

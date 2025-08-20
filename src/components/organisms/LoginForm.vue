@@ -1,7 +1,7 @@
 <template>
   <div class="max-w-md mx-auto bg-white p-8 rounded-xl shadow-lg">
     <div class="text-center mb-8">
-      <BaseText tag="h1" variant="heading-lg" color="navy"> Logowanie </BaseText>
+      <BaseText tag="h1" variant="heading-lg" color="primary"> Logowanie </BaseText>
       <BaseText variant="caption" class="mt-2"> Wprowadź swoje dane aby się zalogować </BaseText>
     </div>
 
