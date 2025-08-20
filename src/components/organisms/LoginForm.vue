@@ -51,11 +51,11 @@
 
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import { useAuth } from '../../composables/useAuth'
-import BaseText from '../atoms/BaseText.vue'
-import BaseInput from '../atoms/BaseInput.vue'
-import BaseButton from '../atoms/BaseButton.vue'
 import { AlertCircle, Loader } from 'lucide-vue-next'
+import { useAuth } from '@/composables/useAuth'
+import BaseText from '@/components/atoms/BaseText.vue'
+import BaseInput from '@/components/atoms/BaseInput.vue'
+import BaseButton from '@/components/atoms/BaseButton.vue'
 
 const emit = defineEmits<{
   loginSuccess: []

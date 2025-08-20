@@ -13,7 +13,7 @@ const LOGIN_USER = gql`
     }
   }
 `
-export interface LoginError {
+interface LoginError {
   message: string
   type: 'NETWORK' | 'INVALID_CREDENTIALS' | 'UNKNOWN'
 }
