@@ -9,7 +9,7 @@
       variant === 'body' && 'text-base',
       variant === 'caption' && 'text-sm text-gray-600',
       color === 'white' && 'text-white',
-      color === 'navy' && 'text-blue-900',
+      color === 'primary' && 'text-primary',
     ]"
   >
     <slot />
@@ -20,7 +20,7 @@
 interface Props {
   tag?: 'h1' | 'h2' | 'h3' | 'p' | 'span'
   variant?: 'heading-lg' | 'heading-md' | 'heading-sm' | 'body' | 'caption'
-  color?: 'default' | 'white' | 'navy'
+  color?: 'default' | 'white' | 'primary'
 }
 
 withDefaults(defineProps<Props>(), {
