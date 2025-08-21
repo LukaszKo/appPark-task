@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      'px-6 py-3 rounded-lg font-medium transition-colors',
+      'px-6 py-3 rounded-lg font-medium transition-colors text-sm sm:text-md',
       variant === 'primary'
         ? 'bg-primary text-white'
         : 'bg-white border border-primary text-primary',

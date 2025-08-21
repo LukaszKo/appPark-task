@@ -4,6 +4,7 @@
       :title="gateData.title"
       :subtitle="gateData.subtitle"
       :options="gateData.options"
+      :pilot-items="gateData.pilotItems"
       @option-selected="$emit('optionSelected', $event)"
     />
   </div>

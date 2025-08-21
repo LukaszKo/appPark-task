@@ -5,23 +5,9 @@
         class="w-20 h-72 border-2 border-blue-900 rounded-tl-none border-l-0 rounded-tr-4xl rounded-br-4xl relative bg-white"
       >
         <div class="absolute top-6 right-6 w-4 h-4 border-2 border-blue-900 rounded-full"></div>
-        <div
-          class="w-16 h-48 border-2 border-blue-900 rounded-tl-none border-l-0 rounded-tr-4xl rounded-br-4xl mt-16 grid"
-        >
-          <div class="border-b-2 border-blue-900 flex justify-center items-center">
-            <BaseText variant="heading-lg" tag="span" class="font-normal">A</BaseText>
-          </div>
-          <div class="border-b-2 border-blue-900 flex justify-center items-center">
-            <BaseText variant="heading-lg" tag="span" class="font-normal">B</BaseText>
-          </div>
-          <div class="border-b-2 border-blue-900 flex justify-center items-center">
-            <BaseText variant="heading-lg" tag="span" class="font-normal">C</BaseText>
-          </div>
-          <div class="bg-tertiary rounded-br-4xl flex justify-center items-center">
-            <BaseText variant="heading-lg" tag="span" class="font-normal">D</BaseText>
-          </div>
-        </div>
+        <PilotList class="mt-16 w-16" :items="pilotItems" />
       </div>
+      <div class="w-10 h-4 border-2 rounded-br-4xl border-t-0 border-l-0 border-blue-900"></div>
     </div>
 
     <div class="flex-1">
@@ -41,7 +27,7 @@
         </BaseButton>
       </div>
 
-      <BaseText variant="caption" class="mt-4">
+      <BaseText variant="caption" class="mt-4 text-center">
         {{ subtitle }}
       </BaseText>
     </div>
@@ -49,14 +35,16 @@
 </template>
 
 <script setup lang="ts">
-import type { GateOption } from '@/types'
+import type { GateOption, PilotItem } from '@/types'
 import BaseButton from '@/components/atoms/BaseButton.vue'
 import BaseText from '@/components/atoms/BaseText.vue'
+import PilotList from './PilotList.vue'
 
 interface Props {
   title: string
   subtitle: string
   options: GateOption[]
+  pilotItems: PilotItem[]
 }
 
 defineProps<Props>()

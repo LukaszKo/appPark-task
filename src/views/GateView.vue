@@ -1,15 +1,9 @@
 <template>
-  <div class="min-h-screen bg-gray-50 flex flex-col max-w-screen-sm mx-auto">
+  <div class="min-h-screen bg-gray-50 flex flex-col">
     <AppHeader title="Otwórz bramę" @back="handleBack" />
     <div class="flex-1 bg-white">
-      <GateControl
-        :gate-data="currentGateData"
-        :current-page="currentPage - 1"
-        :total-pages="totalPages"
-        @option-selected="handleOptionSelected"
-      >
-      </GateControl>
-      <div class="mt-8">
+      <GateControl :gate-data="currentGateData" @option-selected="handleOptionSelected" />
+      <div class="mt-4">
         <PageIndicator
           :current="currentPage - 1"
           :total="totalPages"

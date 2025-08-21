@@ -13,7 +13,7 @@
         <CircleArrowLeft class="w-6 h-6 text-black" />
       </button>
 
-      <BaseText tag="h1" variant="heading-lg" class="text-primary poppins-bold">
+      <BaseText tag="h1" variant="heading-lg" class="text-primary poppins-bold break-words">
         {{ title }}
       </BaseText>
     </div>

@@ -1,21 +1,25 @@
 import { ref, computed } from 'vue'
-import { GATE_LOCATIONS, GATE_TYPES } from '@/utils/constants'
+import { GATES } from '@/utils/constants'
 import type { GateOption, GateData } from '@/types'
 
-function generateGateOptions(page: number, itemsPerPage: number): GateOption[] {
+function generateGateOptions(
+  page: number,
+  itemsPerPage: number,
+  selectedPilotIndex: number,
+): GateOption[] {
   const options: GateOption[] = []
   const startIndex = (page - 1) * itemsPerPage
 
   for (let i = 0; i < itemsPerPage; i++) {
     const index = startIndex + i
-    const locationIndex = index % GATE_LOCATIONS.length
-    const typeIndex = index % GATE_TYPES.length
-    const buildingNumber = Math.floor(index / 3) + 1
+
+    const locationIndex = index % GATES.length
+    const typeIndex = index % GATES.length
 
     options.push({
       id: `gate-${index + 1}`,
-      name: `${GATE_TYPES[typeIndex]} ${GATE_LOCATIONS[locationIndex]} ${buildingNumber}`,
-      isSelected: i === 0,
+      name: `${GATES[typeIndex].type} ${GATES[locationIndex].location}`,
+      isSelected: selectedPilotIndex === i,
     })
   }
 
@@ -24,34 +28,32 @@ function generateGateOptions(page: number, itemsPerPage: number): GateOption[] {
 
 export function useGateData(itemsPerPage = 4) {
   const currentPage = ref(1)
-  const totalItems = ref(16)
+  const pilotItems = ref([
+    { id: '1', label: 'A', highlighted: true },
+    { id: '2', label: 'B' },
+    { id: '3', label: 'C' },
+    { id: '4', label: 'D' },
+  ])
+  const selectedPilotIndex = ref<number>(0)
 
-  const totalPages = computed(() => Math.ceil(totalItems.value / itemsPerPage))
-
+  const totalPages = computed(() => Math.ceil(GATES.length / itemsPerPage))
   const currentGateData = computed<GateData>(() => {
-    const options = generateGateOptions(currentPage.value, itemsPerPage)
+    const options = generateGateOptions(currentPage.value, itemsPerPage, selectedPilotIndex.value)
 
     return {
       title: 'Długa nazwa pilota',
       subtitle: 'Wybierz bramę, by otworzyć',
       options,
+      pilotItems: pilotItemsTransformed.value,
     }
   })
-
-  const hasNextPage = computed(() => currentPage.value < totalPages.value)
   const hasPreviousPage = computed(() => currentPage.value > 1)
-
-  function nextPage() {
-    if (hasNextPage.value) {
-      currentPage.value++
-    }
-  }
-
-  function previousPage() {
-    if (hasPreviousPage.value) {
-      currentPage.value--
-    }
-  }
+  const pilotItemsTransformed = computed(() =>
+    pilotItems.value.map((item, index) => ({
+      ...item,
+      highlighted: index === selectedPilotIndex.value,
+    })),
+  )
 
   function goToPage(page: number) {
     if (page >= 1 && page <= totalPages.value) {
@@ -60,8 +62,11 @@ export function useGateData(itemsPerPage = 4) {
   }
 
   function selectOption(optionId: string) {
-    currentGateData.value.options.forEach((option) => {
+    currentGateData.value.options.forEach((option, index) => {
       option.isSelected = option.id === optionId
+      if (option.isSelected) {
+        selectedPilotIndex.value = index
+      }
     })
   }
 
@@ -69,12 +74,8 @@ export function useGateData(itemsPerPage = 4) {
     currentGateData,
     currentPage,
     totalPages,
-    hasNextPage,
     hasPreviousPage,
-    nextPage,
-    previousPage,
     goToPage,
     selectOption,
-    totalItems,
   }
 }
